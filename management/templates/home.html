@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">email</th>
+        <th scope="col">contact</th>
+        <th scope="col">name</th>
+        <th scope="col">age</th>
+        <th scope="col">dob</th>
+        <th scope="col">update</th>
+        <th scope="col">delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for i in students %}
+        <td>{{ i.email }}</td>
+        <td>{{ i.contact }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.age }}</td>
+        <td>{{ i.dob }}</td>
+        <td> <a href="{% url 'update' i.id %}"><button type="button" class="btn btn-success">Update</button></a></td>
+        <td> <a href="{% url 'delete' i.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
