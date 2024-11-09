@@ -3,6 +3,7 @@ from management.models import student
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -14,6 +15,7 @@ def register(request):
         obj = User(first_name = name, last_name = last_name, username = user, email = email)
         obj.set_password(password) 
         obj.save()
+        print(obj)
     return render (request, 'register.html')
 
 def login_user (request):
@@ -31,15 +33,18 @@ def login_user (request):
 
 def logout_user(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
+@login_required
 def home (request):
-    students = student.objects.all()
+    students = student.objects.filter(fk = request.user)
     data = {
         'students': students
     }
     return render(request, 'home.html', context=data)
 
+
+@login_required
 def add(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -47,7 +52,7 @@ def add(request):
         name = request.POST.get('name')
         age = request.POST.get('age')
         dob = request.POST.get('dob')
-        student.objects.create( email=email, contact = contact,name=name, age = age, dob = dob)
+        student.objects.create(fk = request.user, email=email, contact = contact,name=name, age = age, dob = dob)
         
         return redirect('home')
     return render(request, 'add.html')
