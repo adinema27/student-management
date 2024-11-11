@@ -1,44 +1,40 @@
 {% extends "main.html" %}
 
-
 {% block content %}
-
-<div style="width: 60%; margin: 100px auto ;">
-  <h1 style="text-align: center;"> Enter Your Details </h1>
-    <form method="POST">{% csrf_token %}
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" name = "email">
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Contact</label>
-          <div class="col-sm-10">
-            <input type="tel" class="form-control" id="inputPassword3" name = "contact">
-          </div>
-        </div>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f0f2f5;">
+    <div class="card p-5 shadow-lg" style="width: 100%; max-width: 600px; border-radius: 12px;">
+        <h1 class="text-center mb-4" style="color: #333;">Enter Your Details</h1>
         
-        <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputPassword3" name = 'name'>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label" style="color: #555;">Email</label>
+                <input type="email" class="form-control rounded-pill" id="inputEmail" name="email" required>
             </div>
-          </div>
-
-          <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">age</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputPassword3" name = 'age'>
+            
+            <div class="mb-3">
+                <label for="inputContact" class="form-label" style="color: #555;">Contact</label>
+                <input type="tel" class="form-control rounded-pill" id="inputContact" name="contact" required>
             </div>
-          </div>
-          <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">DOB</label>
-            <div class="col-sm-10">
-              <input type="date" class="form-control" id="inputPassword3" name = 'dob'>
+            
+            <div class="mb-3">
+                <label for="inputName" class="form-label" style="color: #555;">Name</label>
+                <input type="text" class="form-control rounded-pill" id="inputName" name="name" required>
             </div>
-          </div>
-        <button type="submit" class="btn btn-primary">Add data</button>
-      </form>
+            
+            <div class="mb-3">
+                <label for="inputAge" class="form-label" style="color: #555;">Age</label>
+                <input type="number" class="form-control rounded-pill" id="inputAge" name="age" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="inputDOB" class="form-label" style="color: #555;">Date of Birth</label>
+                <input type="date" class="form-control rounded-pill" id="inputDOB" name="dob" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 rounded-pill" style="background-color: #5c67f2; border: none;">Add Data</button>
+        </form>
+    </div>
 </div>
 {% endblock content %}
